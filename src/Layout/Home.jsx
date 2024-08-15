@@ -1,10 +1,14 @@
 import { Outlet } from "react-router-dom";
 import Footer from "../Components/Sharder/Footer/Footer";
 import Navbar from "../Components/Sharder/Navbar/Navbar";
+import { Helmet } from "react-helmet";
 
 const Home = () => {
     return (
         <div>
+            <Helmet>
+                <title>shopMaster || Home</title>
+            </Helmet>
             <div className="h-20">
                 <Navbar />
             </div>
