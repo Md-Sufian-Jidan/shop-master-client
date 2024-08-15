@@ -23,7 +23,7 @@ const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = async (data) => {
-
+        setLoading(true);
         const name = data.name;
         const email = data.email;
         const password = data.password;
@@ -75,6 +75,7 @@ const Register = () => {
             })
             .then((error) => {
                 console.log(error);
+                setLoading(false);
             })
     };
     return (

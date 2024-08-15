@@ -4,11 +4,12 @@ import Login from "../Components/auth/Login/Login";
 import Register from "../Components/auth/Register/Register";
 import Error from "../Components/Error/Error";
 import Products from "../Components/Products/Products";
+import ProtectedRoute from "./ProtectedRoute";
 
 export const router = createBrowserRouter([
     {
         path: "/",
-        element: <Home />,
+        element: <ProtectedRoute><Home /></ProtectedRoute>,
         errorElement: <Error />,
         children: [
             {

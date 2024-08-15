@@ -43,9 +43,12 @@ const Navbar = () => {
                         {navLinks}
                     </ul>
                 </div>
-                <Link to={'/'} className="text-xl flex">
-                    <img className='w-8 rounded-full' src="https://i.ibb.co/8ccwLh7/shop-Master.png" alt="" />
-                    shop<span className='text-green-400'>Master</span></Link>
+                <Link to={'/'} className="text-xl flex gap-1">
+                    <img className='w-8 rounded' src="https://i.ibb.co/8ccwLh7/shop-Master.png" alt="" />
+                    <p>
+                        shop<span className='text-green-400'>Master</span>
+                    </p>
+                </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -56,7 +59,7 @@ const Navbar = () => {
                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                     <div className="w-10 rounded-full">
                         <img
-                            title='user photo'
+                            title={user?.displayName}
                             alt="Tailwind CSS Navbar component"
                             src={`${user ? user?.photoURL : 'https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp'}`} />
                     </div>
