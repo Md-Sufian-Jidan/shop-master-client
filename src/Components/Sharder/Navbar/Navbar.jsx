@@ -10,7 +10,7 @@ const Navbar = () => {
         <NavLink className={({ isActive }) => isActive ? "p-3 border-0 border-b-2 border-b-pink-500 mr-2 font-bold" : "p-3 mr-2"} to={'/all-products'}>All Products</NavLink>
     </>
     return (
-        <div className="navbar fixed max-w-7xl mx-auto bg-red-100 rounded-xl">
+        <div className="navbar fixed max-w-7xl mx-auto bg-red-100 rounded-xl z-50">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -33,7 +33,9 @@ const Navbar = () => {
                         {navLinks}
                     </ul>
                 </div>
-                <Link to={'/'} className="text-xl gap-0">shop<span className='text-green-400'>Master</span></Link>
+                <Link to={'/'} className="text-xl flex">
+                <img className='w-8 rounded-full' src="https://i.ibb.co/8ccwLh7/shop-Master.png" alt="" />
+                shop<span className='text-green-400'>Master</span></Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">

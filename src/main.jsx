@@ -3,12 +3,15 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import { RouterProvider } from 'react-router-dom'
 import { router } from './Routes/Routes.jsx'
+import AuthProvider from './Contexts/AuthProvider.jsx'
+import  { Toaster } from 'react-hot-toast';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     {/* <App /> */}
-    <div className='max-w-7xl mx-auto'>
+    <AuthProvider>
       <RouterProvider router={router} />
-    </div>
+      <Toaster />
+    </AuthProvider>
   </StrictMode>,
 )

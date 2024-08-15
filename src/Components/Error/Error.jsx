@@ -1,5 +1,10 @@
+import { Link } from "react-router-dom";
 
 const Error = () => {
+    // const navigate = Navigate();
+    // const goBack = () => {
+    //     navigate(-1)
+    // }
     return (
         <section className="flex items-center h-full p-16 bg-gray-50 text-gray-800">
             <div className="container flex flex-col items-center justify-center px-5 mx-auto my-8">
@@ -11,6 +16,7 @@ const Error = () => {
                     <p className="mt-4 mb-8 text-gray-600">But dont worry, you can find plenty of other things on our homepage.</p>
                     <a rel="noopener noreferrer" href="#" className="px-8 py-3 font-semibold rounded bg-default-600 text-gray-50">Back to homepage</a>
                 </div>
+                <Link className="btn btn-outline bg-green-700/50 text-white" to={'/'}>Go to Home</Link>
             </div>
         </section>
     );
