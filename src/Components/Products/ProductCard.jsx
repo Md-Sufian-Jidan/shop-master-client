@@ -19,7 +19,7 @@ const ProductCard = ({ item }) => {
                     <p>Price : <span className="font-semibold">{product_price} $</span></p>
                 </div>
                 <div className=" flex items-center justify-around my-2">
-                    <p>Creation Date : {new Date(product_creation_date_time).toLocaleDateString()}</p>
+                    <p>Creation Date : {new Date(product_creation_date_time).toDateString()}</p>
                     <p className="flex items-center gap-2">Rating: <span className="font-semibold flex items-center">{product_ratings}<FaStar /></span></p>
                 </div>
             </div>

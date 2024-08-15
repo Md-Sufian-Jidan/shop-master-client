@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
-import { FaArrowCircleLeft, FaArrowCircleRight } from "react-icons/fa";
-import { FaArrowDown } from "react-icons/fa6";
+import { FaArrowCircleLeft, FaArrowCircleRight, FaCalendarAlt } from "react-icons/fa";
+import { FaArrowDown, FaMoneyBill1Wave } from "react-icons/fa6";
 import axios from "axios";
+import { CiCalendarDate } from "react-icons/ci";
 
 const Products = () => {
 
@@ -12,10 +13,6 @@ const Products = () => {
     const [count, setCount] = useState(0);
     const [currentPage, setCurrentPage] = useState(0)
     const [itemsPerPage, setItemsPerPage] = useState(9);
-
-
-    //todo1: get the total numbers of products
-    //todo2: number of items per page
 
     useEffect(() => {
         fetch(`${import.meta.env.VITE_API_URL}/products?page=${currentPage}&size=${itemsPerPage}`)
@@ -43,21 +40,14 @@ const Products = () => {
         }
     };
 
-    // filter section start
+    // filter by price section start
     const price = products?.map(item => item?.product_price);
-    // console.log(price);
     // high to low
     const asc = price?.sort((a, b) => a - b);
-    // console.log(asc);
     // low to high
     const des = price?.sort((a, b) => b - a);
-    // console.log(des);
 
-    // low to high
     const handleFilter = (filter) => {
-        console.log(price);
-        console.log(asc);
-
         if (filter === des) {
             const remaining = products?.filter((item) => console.log(item?.product_price) == console.log(filter));
             // console.log(remaining);
@@ -73,6 +63,15 @@ const Products = () => {
         }
     };
 
+    // search function by product name
+    const [search, setSearch] = useState('');
+
+    const getData = async (e) => {
+        e.preventDefault()
+        const { data } = await axios(`${import.meta.env.VITE_API_URL}/queries?search=${search}`, { withCredentials: true });
+        setFilterProducts(data);
+    };
+
     // handle date sort 
     const handleDateSort = () => {
         const sortedProducts = [...products].sort((a, b) =>
@@ -80,20 +79,9 @@ const Products = () => {
         );
         console.log(sortedProducts);
         setFilterProducts(sortedProducts);
-    }
-
-    // search functionality
-    // const [queries, setQueries] = useState();
-    const [search, setSearch] = useState('');
-    // useEffect(() => {
-    //     getData()
-    // }, []);
-
-    const getData = async (e) => {
-        e.preventDefault()
-        const { data } = await axios(`${import.meta.env.VITE_API_URL}/queries?search=${search}`, { withCredentials: true });
-        setFilterProducts(data);
     };
+
+
 
     return (
         <>
@@ -114,17 +102,16 @@ const Products = () => {
 
             <div className="flex justify-between items-center ">
                 <details className="dropdown">
-                    <summary className="btn m-1 bg-green-500 text-white">Sort by Price <FaArrowDown /></summary>
+                    <summary className="btn m-1 bg-green-500 text-white flex items-center">Sort by Price <FaMoneyBill1Wave /></summary>
                     <ul className="menu dropdown-content rounded-box z-[1] w-52 p-2 shadow bg-fuchsia-900 text-rose-500 font-semibold">
                         <li onClick={() => handleFilter(des)} className="hover:bg-violet-500 rounded-xl"><a>High To Low</a></li>
                         <li onClick={() => handleFilter(asc)} className="hover:bg-violet-500 rounded-xl"><a>Low To High</a></li>
                     </ul>
                 </details>
                 <details className="dropdown dropdown-left">
-                    <summary className="btn m-1">sort by date</summary>
+                    <summary className="btn m-1 bg-green-500 text-white flex items-center">sort by date <FaCalendarAlt /></summary>
                     <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-                        <li onClick={handleDateSort}><a>Newest date</a></li>
-                        <li><a>Item 2</a></li>
+                        <li onClick={handleDateSort} className="hover:bg-violet-500 rounded-xl" ><a>Newest date</a></li>
                     </ul>
                 </details>
             </div>
