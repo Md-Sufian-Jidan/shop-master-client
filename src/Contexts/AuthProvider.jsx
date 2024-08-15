@@ -1,6 +1,6 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile } from "firebase/auth";
 import auth from "../Firebase/Firebase.config";
 import { GoogleAuthProvider } from "firebase/auth/web-extension";
 
@@ -42,6 +42,15 @@ const AuthProvider = ({ children }) => {
         setLoading(true);
         return signOut(auth);
     };
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, currentUser => {
+            setUser(currentUser);
+        })
+        return () => {
+            unsubscribe();
+        }
+    }, [])
 
     const userDetails = { user, createUser, updateUserProfile, loginUser, googleLoginUser, logout };
     return (

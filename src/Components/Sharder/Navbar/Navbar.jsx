@@ -1,14 +1,24 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import useAuth from '../../../Hooks/useAuth';
+import toast from 'react-hot-toast';
 
 const Navbar = () => {
-
-    const user = false;
+    const { logout, user } = useAuth();
+    console.log(user);
 
     const navLinks = <>
         <NavLink className={({ isActive }) => isActive ? "p-3 border-0 border-b-2 border-b-pink-500 mr-2 font-bold" : "p-3 mr-2"} to={'/'}>Home</NavLink>
         <NavLink className={({ isActive }) => isActive ? "p-3 border-0 border-b-2 border-b-pink-500 mr-2 font-bold" : "p-3 mr-2"} to={'/all-products'}>All Products</NavLink>
     </>
+
+
+    const handleLogout = () => {
+        logout()
+            .then(() => {
+                toast.success('User Logout Successfully')
+            })
+    }
     return (
         <div className="navbar fixed max-w-7xl mx-auto bg-red-100 rounded-xl z-50">
             <div className="navbar-start">
@@ -34,8 +44,8 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <Link to={'/'} className="text-xl flex">
-                <img className='w-8 rounded-full' src="https://i.ibb.co/8ccwLh7/shop-Master.png" alt="" />
-                shop<span className='text-green-400'>Master</span></Link>
+                    <img className='w-8 rounded-full' src="https://i.ibb.co/8ccwLh7/shop-Master.png" alt="" />
+                    shop<span className='text-green-400'>Master</span></Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -46,14 +56,14 @@ const Navbar = () => {
                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                     <div className="w-10 rounded-full">
                         <img
-                        title='user photo'
+                            title='user photo'
                             alt="Tailwind CSS Navbar component"
-                            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                            src={`${user ? user?.photoURL : 'https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp'}`} />
                     </div>
                 </div>
                 <div>
                     {
-                        user ? <a className="btn bg-red-600 text-white">Log Out</a> : <a className="btn bg-green-400 text-white">Login</a>
+                        user ? <button onClick={handleLogout} className="btn bg-red-600 text-white">Log Out</button> : <Link to={'/login'} className="btn bg-green-400 text-white">Login</Link>
                     }
                 </div>
             </div>
