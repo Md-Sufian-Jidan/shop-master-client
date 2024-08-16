@@ -22,7 +22,7 @@ const Navbar = () => {
     return (
         <div className="navbar fixed max-w-7xl mx-auto bg-red-100 rounded-xl z-50">
             <div className="navbar-start">
-                {/* <div className="dropdown">
+                <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +42,7 @@ const Navbar = () => {
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                         {navLinks}
                     </ul>
-                </div> */}
+                </div>
                 <Link to={'/'} className="text-xl flex gap-1">
                     <img className='w-8 rounded' src="https://i.ibb.co/8ccwLh7/shop-Master.png" alt="" />
                     <p>
@@ -50,11 +50,11 @@ const Navbar = () => {
                     </p>
                 </Link>
             </div>
-            {/* <div className="navbar-center hidden lg:flex">
+            <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
                     {navLinks}
                 </ul>
-            </div> */}
+            </div>
             <div className="navbar-end space-x-2">
                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                     <div className="w-10 rounded-full">

@@ -66,7 +66,7 @@ const Login = () => {
                             Create your account today and start exploring the best deals on ShopMaster!
                         </p>
                     </div>
-                    <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+                    <div className="card bg-base-100 shadow-2xl">
                         <form onSubmit={handleLogin} className="card-body">
                             <div className="form-control">
                                 <label className="label">

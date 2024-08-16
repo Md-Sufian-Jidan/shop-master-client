@@ -54,23 +54,24 @@ const Register = () => {
                     image: img_url,
                     status: 'active',
                     role: 'guest',
-                    date: new Date().toLocaleDateString(),
+                    created_date: new Date().toLocaleDateString(),
                 };
                 axiosPublic.post('/register', userInfo)
                     .then((res) => {
-                        console.log(res.data);
+                        console.log(res);
+                        // toast.success('user is going to database')
                     })
                 updateUserProfile(name, img_url)
                     .then((res) => {
                         console.log(res);
                         setLoading(false);
                         navigate('/'); // fix this before deploying your project
-                        toast.success('User Created Successfully');
+                        return toast.success('User Created Successfully');
                     })
                     .catch(err => {
                         setLoading(false);
-                        toast.error(`${err.message}`);
                         console.log(err);
+                        return toast.error(`${err.message}`);
                     })
             })
             .then((error) => {

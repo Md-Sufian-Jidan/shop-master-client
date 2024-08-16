@@ -13,17 +13,6 @@ const Products = () => {
     const [currentPage, setCurrentPage] = useState(0)
     const [itemsPerPage, setItemsPerPage] = useState(9);
 
-    // search by brand, minPrice, maxPrice and categories states
-    const [queries, setQueries] = useState([]);
-    const [brand, setBrand] = useState('');
-    const [category, setCategory] = useState('');
-    const [minPrice, setMinPrice] = useState('');
-    const [maxPrice, setMaxPrice] = useState('');
-    // console.log(brand);
-    // console.log(category);
-    // console.log(minPrice);
-    // console.log(maxPrice);
-
 
     useEffect(() => {
         fetch(`${import.meta.env.VITE_API_URL}/products?page=${currentPage}&size=${itemsPerPage}`)
@@ -97,81 +86,8 @@ const Products = () => {
         setFilterProducts(sortedProducts);
     };
 
-    // categories and brand name api call 
-    useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/brands_category`)
-            .then(res => res.json())
-            .then(data => setQueries(data))
-    }, []);
-
-    useEffect(() => {
-        categorization();
-    }, [brand, category, minPrice, maxPrice]);
-
-    const categorization = () => {
-        fetch(`${import.meta.env.VITE_API_URL}/categorization?brand=${brand}&category=${category}&minPrice=${minPrice}&maxPrice=${maxPrice}`)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-                setFilterProducts(data?.products);
-                if (data?.count > 0) {
-                    setCount(data?.count);
-                }
-            })
-    }
-
     return (
         <>
-            {/* categories wise search section */}
-            <div>
-                <h1 className="text-center font-bold text-3xl">Product Filters</h1>
-                <div className="flex justify-between items-center gap-5 my-5">
-                    <div>
-                        <label>Brand:</label>
-                        <select className="p-2 rounded-xl" value={brand} onChange={(e) => setBrand(e.target.value)}>
-                            <option>All</option>
-                            {
-                                queries[0]?.brands?.map((item) => <option className="rounded-xl hover:bg-indigo-400" value={item} >{item}</option>)
-                            }
-                            {/* Add more brands as options */}
-                        </select>
-                    </div>
-                    <div>
-                        <label>Category:</label>
-                        <select className="p-2 rounded-xl" value={category} onChange={(e) => setCategory(e.target.value)}>
-                            <option value="">All Categories</option>
-                            {
-                                queries[0]?.categories?.map((item) => <option className="rounded-xl hover:bg-indigo-400" value={item}>{item}</option>)
-                            }
-                            {/* Add more categories as options */}
-                        </select>
-                    </div>
-                    <div>
-                        <label>Price Range:</label>
-                        <input
-                            className="p-2 rounded-xl mx-1"
-                            type="number"
-                            placeholder="Min Price"
-                            value={minPrice}
-                            onChange={(e) => setMinPrice(e.target.value)}
-                        />
-                        <input
-                            className="p-2 rounded-xl"
-                            type="number"
-                            placeholder="Max Price"
-                            value={maxPrice}
-                            onChange={(e) => setMaxPrice(e.target.value)}
-                        />
-                    </div>
-                    <div>
-                        <button className="btn btn-outline">Apply all</button>
-                    </div>
-                </div>
-            </div>
-
-
-
-
             {/* search by product name section */}
             <form className="max-w-xl mx-auto my-5">
                 <label className="input input-bordered flex items-center gap-2 mx-10">
