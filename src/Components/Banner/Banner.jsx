@@ -1,9 +1,8 @@
-import React from 'react';
 
 const Banner = () => {
     return (
         <div
-            className="hero h-[500px] my-10"
+            className="hero h-[500px] lg:my-10 my-5"
             style={{
                 backgroundImage: "url(https://i.ibb.co/3C6Xdb7/images-13.jpg)",
             }}>

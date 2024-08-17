@@ -60,8 +60,8 @@ const Navbar = () => {
                     <div className="w-10 rounded-full">
                         <img
                             title={user?.displayName}
-                            alt="Tailwind CSS Navbar component"
-                            src={`${user ? user?.photoURL : 'https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp'}`} />
+                            alt="User Profile Picture"
+                            src={`${user ? user?.photoURL : 'https://i.ibb.co/S3DXRY6/profile.jpg'}`} />
                     </div>
                 </div>
                 <div>
